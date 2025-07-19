@@ -31,16 +31,22 @@
                 modern technologies. Experienced in mentoring and guiding individuals or groups at all levels in backend
                 development, cloud engineering, and programming best practices. Strong ability to combine practical
                 learning with real-world projects, delivering curriculum that aligns with industry standards.</p>
-            <h2>Skills</h2>
-            <ul>
-                <li><strong>Programming Languages</strong>: PHP, Java, JavaScript, and Python</li>
-                <li><strong>Cloud technologies</strong>: AWS, GCP and Digital Ocean</li>
-                <li><strong>Web Framework</strong>: Laravel</li>
-                <li><strong>Linux</strong>: RHEL, Debian/Ubuntu, and  ArchLinux</li>
-            </ul>
+            <article id="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li><strong>Programming Languages</strong>: PHP, Java, JavaScript, and Python</li>
+                    <li><strong>Cloud technologies</strong>: AWS, GCP and Digital Ocean</li>
+                    <li><strong>Web Framework</strong>: Laravel</li>
+                    <li><strong>Linux</strong>: RHEL, Debian/Ubuntu, and ArchLinux</li>
+                </ul>
+            </article>
+            <article id="experiences"></article>
 
-            <h2>Work Experiences</h2>
-            <div id="experiences"></div>
+            <article id="certificates">
+                <h2>Certificates</h2>
+                <ul id="certificates-list"></ul>
+            </article>
+
 
         </div>
 
@@ -121,6 +127,15 @@
             }
         ];
 
+        const certificatesData = [
+            {
+                title: "Associate Cloud Engineer",
+                institution: "Google Cloud Platform",
+                date: "2025",
+                link: "https://cloud.google.com/learn/certification/cloud-engineer/"
+            },
+        ];
+
         // Data for notable projects stored in a JavaScript variable
         const notableProjects = [
             {
@@ -145,22 +160,35 @@
             }
         ];
 
-
         function displayExperiences() {
             const experienceContainer = document.getElementById('experiences');
+            let experienceContent = '<h2>Work Experiences</h2>';
+
             experiencesData.forEach(exp => {
-                const article = document.createElement('article');
-                article.innerHTML = `<p><strong>${exp.title}</strong> | ${exp.company} | ${exp.period}</p>`;
-                const ul = document.createElement('ul');
-                exp.responsibilities.forEach(responsibility => {
-                    const li = document.createElement('li');
-                    li.textContent = responsibility;
-                    ul.appendChild(li);
-                });
-                article.appendChild(ul);
-                experienceContainer.appendChild(article);
+                experienceContent += `
+        <p><strong>${exp.title}</strong> | ${exp.company} | ${exp.period}</p>
+        <ul>
+            ${exp.responsibilities.map(responsibility => `<li>${responsibility}</li>`).join('')}
+        </ul>
+    `;
+            });
+
+            experienceContainer.innerHTML = experienceContent;
+        }
+
+        function displayCertificates() {
+            const certificatesContainer = document.getElementById('certificates-list');
+            certificatesData.forEach(cert => {
+                const li = document.createElement('li');
+                const certLink = document.createElement('a');
+                certLink.href = cert.link;
+                certLink.textContent = `${cert.title} - ${cert.institution} (${cert.date})`;
+                certLink.target = '_blank'; // Open in new tab
+                li.appendChild(certLink);
+                certificatesContainer.appendChild(li);
             });
         }
+
 
         // Function to dynamically create and display the notable projects
         function displayNotableProjects() {
@@ -191,6 +219,7 @@
         }
 
         displayExperiences();
+        displayCertificates();
         displayNotableProjects();
     </script>
 </body>
