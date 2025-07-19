@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dian Hanifudin Subhi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>
+                    <a href="https://github.com/dhanifudin/resume-flexbox" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> Download Source
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="content">
+            <h1>Dian Hanifudin Subhi</h1>
+            <p>Experienced Developer and Educator with over 7 years of experience in software development, system
+                administration, cloud computing, and teaching. Skilled in developing scalable web applications using
+                modern technologies. Experienced in mentoring and guiding individuals or groups at all levels in backend
+                development, cloud engineering, and programming best practices. Strong ability to combine practical
+                learning with real-world projects, delivering curriculum that aligns with industry standards.</p>
+            <h2>Skills</h2>
+            <ul>
+                <li><strong>Programming Languages</strong>: PHP, Java, JavaScript, and Python</li>
+                <li><strong>Cloud technologies</strong>: AWS, GCP and Digital Ocean</li>
+                <li><strong>Web Framework</strong>: Laravel</li>
+                <li><strong>Linux</strong>: RHEL, Debian/Ubuntu, and  ArchLinux</li>
+            </ul>
+
+            <h2>Work Experiences</h2>
+            <div id="experiences"></div>
+
+        </div>
+
+        <aside>
+            <img src="images/profile.jpg" alt="Dian Hanifudin Subhi">
+            <p><strong>Biodata</strong></p>
+            <p><i class="fa fa-city"></i> Malang, Indonesia</p>
+            <p><i class="fa fa-envelope"></i> <a href="mailto:hi@dhanifudin.com">hi@dhanifudin.com</a></p>
+            <p><i class="fa fa-phone"></i> +6282230743546</p>
+
+            <!-- Social Links Section -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dhanifudin" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/dhanifudin" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://dhanifudin.com" target="_blank" class="social-icon">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+
+            <!-- Dynamic Notable Projects Section -->
+            <div id="notable-projects" class="notable-projects">
+                <h3>Notable Projects</h3>
+            </div>
+
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Dian Hanifudin Subhi.</p>
+    </footer>
+
+    <script>
+        const experiencesData = [
+            {
+                title: "Lecturer",
+                company: "Politeknik Negeri Malang",
+                period: "2015 - Present",
+                responsibilities: [
+                    "Designed and delivered hands-on programming courses in web development and cloud computing.",
+                    "Developed curriculum that integrates practical projects with theoretical knowledge.",
+                    "Actively participated in brainstorming sessions to enhance the learning experience.",
+                ]
+            },
+            {
+                title: "System Administrator",
+                company: "PT. Nusantara Baskara Jaya",
+                period: "2021 - 2023",
+                responsibilities: [
+                    "Managered and maintained server infrastructure for web applications.",
+                    "Implemented automated deployment processes using Docker and Kubernetes.",
+                    "Ensured system security and data integrity through regular backups and updates.",
+                    "Worked closely with development teams to streamline deployment processes."
+                ]
+            },
+            {
+                title: "DevOps Engineer",
+                company: "Logisly",
+                period: "Jan 2022 - Aug 2022",
+                responsibilities: [
+                    "Developed and maintained CI/CD pipelines for efficient software deployment.",
+                    "Managed cloud infrastructure using AWS.",
+                    "Monitored system performance and implemented optimizations."
+                ]
+            },
+            {
+                title: "Assistant Lecturer",
+                company: "Institut Teknologi Sepuluh Nopember",
+                period: "2010 - 2011",
+                responsibilities: [
+                    "Assisted in teaching programming courses and lab sessions.",
+                    "Prepared and graded assignments and exams.",
+                    "Provided support to students in understanding programming concepts."
+                ]
+            }
+        ];
+
+        // Data for notable projects stored in a JavaScript variable
+        const notableProjects = [
+            {
+                title: 'p',
+                description: 'Simple shortener URL backend service built with Hapi.js, designed to be lightweight and efficient.',
+                link: 'https://github.com/dhanifudin/p'
+            },
+            {
+                title: 'Forum API',
+                description: 'A RESTful API for a forum application, built with Node.js and Hapi.js, providing endpoints for user management and post interactions.',
+                link: 'https://github.com/dhanifudin/forum-api'
+            },
+            {
+                title: 'Rest in CI',
+                description: 'CodeIgniter 3 skeleton with JWT on steroids, designed to provide a robust foundation for building RESTful APIs.',
+                link: 'https://github.com/dhanifudin/rest-in-ci'
+            },
+            {
+                title: 'Dotfiles',
+                description: 'My personal dotfiles repository, containing configurations and scripts for my development environment.',
+                link: 'https://github.com/dhanifudin/dotfiles'
+            }
+        ];
+
+
+        function displayExperiences() {
+            const experienceContainer = document.getElementById('experiences');
+            experiencesData.forEach(exp => {
+                const article = document.createElement('article');
+                article.innerHTML = `<p><strong>${exp.title}</strong> | ${exp.company} | ${exp.period}</p>`;
+                const ul = document.createElement('ul');
+                exp.responsibilities.forEach(responsibility => {
+                    const li = document.createElement('li');
+                    li.textContent = responsibility;
+                    ul.appendChild(li);
+                });
+                article.appendChild(ul);
+                experienceContainer.appendChild(article);
+            });
+        }
+
+        // Function to dynamically create and display the notable projects
+        function displayNotableProjects() {
+            const projectsContainer = document.getElementById('notable-projects');
+
+            notableProjects.forEach(project => {
+                // Create container for each project
+                const projectDiv = document.createElement('div');
+                projectDiv.classList.add('project');
+
+                // Create and append project title with a link
+                const projectTitle = document.createElement('h4');
+                const projectLink = document.createElement('a');
+                projectLink.href = project.link;
+                projectLink.textContent = project.title;
+                projectLink.target = '_blank'; // Open in new tab
+                projectTitle.appendChild(projectLink);
+                projectDiv.appendChild(projectTitle);
+
+                // Create and append project description
+                const projectDescription = document.createElement('p');
+                projectDescription.textContent = project.description;
+                projectDiv.appendChild(projectDescription);
+
+                // Append the project div to the container
+                projectsContainer.appendChild(projectDiv);
+            });
+        }
+
+        displayExperiences();
+        displayNotableProjects();
+    </script>
+</body>
+
+</html>
